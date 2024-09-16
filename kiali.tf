@@ -73,7 +73,7 @@ resource "kubernetes_manifest" "openid_secret" {
       "namespace" = "istio-system"
     }
     "data" = {
-      "oidc-secret" = var.openid_secret
+      "oidc-secret" = base64encode(var.openid_secret)
     }
   }
 }
