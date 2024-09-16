@@ -26,28 +26,33 @@ No modules.
 |------|------|
 | [argocd_application.kiali-operator](https://registry.terraform.io/providers/oboukili/argocd/latest/docs/resources/application) | resource |
 | [helm_release.kiali-operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
-| [kubernetes_namespace.kiali-operator-namespace](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
+| [kubernetes_manifest.openid_secret](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
+| [kubernetes_manifest.openid_server_cabundle](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
+| [kubernetes_namespace.kiali_operator_namespace](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_argocd-namespace"></a> [argocd-namespace](#input\_argocd-namespace) | ArgoCD Namespace | `string` | `"argocd"` | no |
-| <a name="input_argocd-server"></a> [argocd-server](#input\_argocd-server) | ArgoCD Server URL | `string` | `""` | no |
-| <a name="input_argocd-token"></a> [argocd-token](#input\_argocd-token) | ArgoCD Token | `string` | `""` | no |
-| <a name="input_cluster-url"></a> [cluster-url](#input\_cluster-url) | Cluster URL | `string` | `"https://kubernetes.default.svc"` | no |
-| <a name="input_deploy-method"></a> [deploy-method](#input\_deploy-method) | Choose Deploy Method ArgpCD or Helm | `string` | n/a | yes |
-| <a name="input_helm-chart-name"></a> [helm-chart-name](#input\_helm-chart-name) | Helm Chart Name | `string` | `"kiali-operator"` | no |
-| <a name="input_helm-chart-repo"></a> [helm-chart-repo](#input\_helm-chart-repo) | Helm Chart Repo | `string` | `"https://kiali.org/helm-charts"` | no |
-| <a name="input_helm-chart-version"></a> [helm-chart-version](#input\_helm-chart-version) | Helm Chart Version | `string` | `"1.89.3"` | no |
-| <a name="input_helm-custom-values"></a> [helm-custom-values](#input\_helm-custom-values) | Use Helm Custom Values | `bool` | `false` | no |
-| <a name="input_helm-custom-values-path"></a> [helm-custom-values-path](#input\_helm-custom-values-path) | Helm Custom Values Path | `string` | `""` | no |
-| <a name="input_helm-name"></a> [helm-name](#input\_helm-name) | Helm Release Name | `string` | `"kiali"` | no |
-| <a name="input_kiali-operator-name"></a> [kiali-operator-name](#input\_kiali-operator-name) | Kiali Operator Name | `string` | `"kiali-operator"` | no |
-| <a name="input_kiali-operator-namespace"></a> [kiali-operator-namespace](#input\_kiali-operator-namespace) | Kiali Operator Namespace | `string` | `"kiali-operator"` | no |
-| <a name="input_kube-context"></a> [kube-context](#input\_kube-context) | Kubernetes Context to Use | `string` | `""` | no |
-| <a name="input_kubeconfig-path"></a> [kubeconfig-path](#input\_kubeconfig-path) | Kubeconfig Path | `string` | `"~/.kube/config"` | no |
-| <a name="input_tls-verify-skip"></a> [tls-verify-skip](#input\_tls-verify-skip) | Skip SelfSigned Certificates Validate | `bool` | `false` | no |
+| <a name="input_argocd_namespace"></a> [argocd\_namespace](#input\_argocd\_namespace) | ArgoCD Namespace | `string` | `"argocd"` | no |
+| <a name="input_argocd_server"></a> [argocd\_server](#input\_argocd\_server) | ArgoCD Server URL | `string` | `""` | no |
+| <a name="input_argocd_token"></a> [argocd\_token](#input\_argocd\_token) | ArgoCD Token | `string` | `""` | no |
+| <a name="input_cluster_url"></a> [cluster\_url](#input\_cluster\_url) | Cluster URL | `string` | `"https://kubernetes.default.svc"` | no |
+| <a name="input_deploy_method"></a> [deploy\_method](#input\_deploy\_method) | Choose Deploy Method ArgpCD or Helm | `string` | n/a | yes |
+| <a name="input_helm_chart_name"></a> [helm\_chart\_name](#input\_helm\_chart\_name) | Helm Chart Name | `string` | `"kiali-operator"` | no |
+| <a name="input_helm_chart_repo"></a> [helm\_chart\_repo](#input\_helm\_chart\_repo) | Helm Chart Repo | `string` | `"https://kiali.org/helm-charts"` | no |
+| <a name="input_helm_chart_version"></a> [helm\_chart\_version](#input\_helm\_chart\_version) | Helm Chart Version | `string` | `"1.89.3"` | no |
+| <a name="input_helm_custom_values"></a> [helm\_custom\_values](#input\_helm\_custom\_values) | Use Helm Custom Values | `bool` | `false` | no |
+| <a name="input_helm_custom_values_path"></a> [helm\_custom\_values\_path](#input\_helm\_custom\_values\_path) | Helm Custom Values Path | `string` | `""` | no |
+| <a name="input_helm_name"></a> [helm\_name](#input\_helm\_name) | Helm Release Name | `string` | `"kiali"` | no |
+| <a name="input_kiali_operator_name"></a> [kiali\_operator\_name](#input\_kiali\_operator\_name) | Kiali Operator Name | `string` | `"kiali-operator"` | no |
+| <a name="input_kiali_operator_namespace"></a> [kiali\_operator\_namespace](#input\_kiali\_operator\_namespace) | Kiali Operator Namespace | `string` | `"kiali-operator"` | no |
+| <a name="input_kube_context"></a> [kube\_context](#input\_kube\_context) | Kubernetes Context to Use | `string` | `""` | no |
+| <a name="input_kubeconfig_path"></a> [kubeconfig\_path](#input\_kubeconfig\_path) | Kubeconfig Path | `string` | `"~/.kube/config"` | no |
+| <a name="input_openid_secret"></a> [openid\_secret](#input\_openid\_secret) | OpenID Secret | `string` | `""` | no |
+| <a name="input_openid_server_pem_certificate"></a> [openid\_server\_pem\_certificate](#input\_openid\_server\_pem\_certificate) | OpenID Server PEM Certificate | `string` | `""` | no |
+| <a name="input_tls_verify_skip"></a> [tls\_verify\_skip](#input\_tls\_verify\_skip) | Skip SelfSigned Certificates Validate | `bool` | `false` | no |
+| <a name="input_use_openid_connect"></a> [use\_openid\_connect](#input\_use\_openid\_connect) | Use OpenID Connect Strategy | `bool` | `false` | no |
 
 ## Outputs
 

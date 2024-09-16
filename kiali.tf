@@ -1,21 +1,21 @@
-resource "kubernetes_namespace" "kiali-operator-namespace" {
+resource "kubernetes_namespace" "kiali_operator_namespace" {
   metadata {
-    name = var.kiali-operator-namespace
+    name = var.kiali_operator_namespace
   }
 }
 
 resource "argocd_application" "kiali-operator" {
-  count = lower(var.deploy-method) == "argocd" ? 1 : 0
+  count = lower(var.deploy_method) == "argocd" ? 1 : 0
 
   metadata {
-    name      = var.kiali-operator-name
-    namespace = var.argocd-namespace
+    name      = var.kiali_operator_name
+    namespace = var.argocd_namespace
   }
 
   spec {
     destination {
-      server    = var.cluster-url
-      namespace = kubernetes_namespace.kiali-operator-namespace.metadata[0].name
+      server    = var.cluster_url
+      namespace = kubernetes_namespace.kiali_operator_namespace.metadata[0].name
     }
 
     sync_policy {
@@ -23,26 +23,57 @@ resource "argocd_application" "kiali-operator" {
     }
 
     source {
-      repo_url        = var.helm-chart-repo
-      chart           = var.helm-chart-name
-      target_revision = var.helm-chart-version
+      repo_url        = var.helm_chart_repo
+      chart           = var.helm_chart_name
+      target_revision = var.helm_chart_version
 
       helm {
-        values = var.helm-custom-values ? templatefile(var.helm-custom-values-path, {}) : ""
+        values = var.helm_custom_values ? templatefile(var.helm_custom_values_path, {}) : ""
       }
     }
   }
 }
 
-
 resource "helm_release" "kiali-operator" {
-  count = lower(var.deploy-method) == "helm" ? 1 : 0
+  count = lower(var.deploy_method) == "helm" ? 1 : 0
 
-  namespace  = kubernetes_namespace.kiali-operator-namespace.metadata[0].name
-  name       = var.helm-name
-  chart      = var.helm-chart-name
-  repository = var.helm-chart-repo
-  version    = var.helm-chart-version
+  namespace  = kubernetes_namespace.kiali_operator_namespace.metadata[0].name
+  name       = var.helm_name
+  chart      = var.helm_chart_name
+  repository = var.helm_chart_repo
+  version    = var.helm_chart_version
 
-  values = var.helm-custom-values ? [templatefile(var.helm-custom-values-path, {})] : []
+  values = var.helm_custom_values ? [templatefile(var.helm_custom_values_path, {})] : []
+}
+
+resource "kubernetes_manifest" "openid_server_cabundle" {
+  count = var.use_openid_connect == true ? 1 : 0
+
+  manifest = {
+    "apiVersion" = "v1"
+    "kind"       = "ConfigMap"
+    "metadata" = {
+      "name"      = "kiali-cabundle"
+      "namespace" = "istio-system"
+    }
+    "data" = {
+      "openid-server-ca.crt" = var.openid_server_pem_certificate
+    }
+  }
+}
+
+resource "kubernetes_manifest" "openid_secret" {
+  count = var.use_openid_connect == true ? 1 : 0
+
+  manifest = {
+    "apiVersion" = "v1"
+    "kind"       = "Secret"
+    "metadata" = {
+      "name"      = "kiali"
+      "namespace" = "istio-system"
+    }
+    "data" = {
+      "oidc-secret" = var.openid_secret
+    }
+  }
 }
