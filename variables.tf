@@ -133,7 +133,7 @@ variable "openid_secret" {
   default     = ""
 
   validation {
-    condition     = !(var.use-openid-connect && var.openid_secret == "")
+    condition     = !(var.use_openid_connect && var.openid_secret == "")
     error_message = "OpenID Secret must not be null when OpenID Connect is true."
   }
 }
