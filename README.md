@@ -12,9 +12,9 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_argocd"></a> [argocd](#provider\_argocd) | 6.1.1 |
-| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.15.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.32.0 |
+| <a name="provider_argocd"></a> [argocd](#provider\_argocd) | 7.0.3 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.16.1 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.33.0 |
 
 ## Modules
 
@@ -24,7 +24,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [argocd_application.kiali-operator](https://registry.terraform.io/providers/oboukili/argocd/latest/docs/resources/application) | resource |
+| [argocd_application.kiali-operator](https://registry.terraform.io/providers/argoproj-labs/argocd/latest/docs/resources/application) | resource |
 | [helm_release.kiali-operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [kubernetes_manifest.openid_secret](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
 | [kubernetes_manifest.openid_server_cabundle](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
@@ -44,8 +44,6 @@ No modules.
 | <a name="input_helm_chart_version"></a> [helm\_chart\_version](#input\_helm\_chart\_version) | Helm Chart Version | `string` | `"1.89.3"` | no |
 | <a name="input_helm_custom_values"></a> [helm\_custom\_values](#input\_helm\_custom\_values) | Use Helm Custom Values | `bool` | `false` | no |
 | <a name="input_helm_custom_values_path"></a> [helm\_custom\_values\_path](#input\_helm\_custom\_values\_path) | Helm Custom Values Path | `string` | `""` | no |
-| <a name="input_helm_name"></a> [helm\_name](#input\_helm\_name) | Helm Release Name | `string` | `"kiali"` | no |
-| <a name="input_kiali_operator_name"></a> [kiali\_operator\_name](#input\_kiali\_operator\_name) | Kiali Operator Name | `string` | `"kiali-operator"` | no |
 | <a name="input_kiali_operator_namespace"></a> [kiali\_operator\_namespace](#input\_kiali\_operator\_namespace) | Kiali Operator Namespace | `string` | `"kiali-operator"` | no |
 | <a name="input_kube_context"></a> [kube\_context](#input\_kube\_context) | Kubernetes Context to Use | `string` | `""` | no |
 | <a name="input_kubeconfig_path"></a> [kubeconfig\_path](#input\_kubeconfig\_path) | Kubeconfig Path | `string` | `"~/.kube/config"` | no |

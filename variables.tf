@@ -50,12 +50,6 @@ variable "kiali_operator_namespace" {
   default     = "kiali-operator"
 }
 
-variable "kiali_operator_name" {
-  description = "Kiali Operator Name"
-  type        = string
-  default     = "kiali-operator"
-}
-
 variable "argocd_namespace" {
   description = "ArgoCD Namespace"
   type        = string
@@ -66,12 +60,6 @@ variable "cluster_url" {
   description = "Cluster URL"
   type        = string
   default     = "https://kubernetes.default.svc"
-}
-
-variable "helm_name" {
-  description = "Helm Release Name"
-  type        = string
-  default     = "kiali"
 }
 
 variable "helm_chart_name" {
